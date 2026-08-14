@@ -1,0 +1,115 @@
+package com.Nallasivam.Spring_Practice;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+	
+			private AccountService accService;
+			
+			
+			public HelloController(AccountService accService) {
+				
+				this.accService=accService;
+			}
+
+	
+			@GetMapping("/hello")
+			public String hello() {
+				
+					return "Hello";
+			}
+			
+			@GetMapping("/account")
+			public AccountResponse showData() {
+					
+				return new AccountResponse(123,"Nalla Sivam",10000);
+					
+			}
+			
+			@PostMapping("/account")
+			public String postData() {
+					
+				return "post data";
+			}
+			
+			@PutMapping("/account")
+			public String putData() {
+					
+				
+				return "put data";
+			}
+			@DeleteMapping("/account")
+			public String deleteData() {
+					
+				return "delete data";
+			}
+			
+			@GetMapping("/account/{accountnumber}")
+			public long getPathVariable(@PathVariable long accountnumber) {
+					
+				return accountnumber;
+			}
+			
+			
+			@GetMapping("/account/showresponse/{accountnumber}")
+			public AccountResponse getAccountResponse(@PathVariable long accountnumber) {
+					
+				return new AccountResponse(accountnumber,"Arunachalam",10000);
+			}
+			
+			
+			@GetMapping("/account/requestparam")
+			public String getRequestParam(@RequestParam long variable) {
+					
+				return "it is "+variable;
+			}
+			
+			@PostMapping("/account/data")
+			public String accountRequest(@RequestBody AccountRequest accReq) {
+				
+				System.out.println(accReq.getAccountNumber());
+			    System.out.println(accReq.getName());
+			    System.out.println(accReq.getBalance());
+					
+				return "created";
+			}
+			
+			
+			@PostMapping("/account/responseentity/data")
+			public ResponseEntity<String> accountRequest1(@RequestBody AccountRequest accReq) {
+				
+				System.out.println(accReq.getAccountNumber());
+			    System.out.println(accReq.getName());
+			    System.out.println(accReq.getBalance());
+			    
+			    if(accReq.getBalance()<=0) {
+			    	return ResponseEntity.badRequest().body("balance cant be zero or negative");
+			    }
+					
+				return ResponseEntity.status(HttpStatus.CREATED).body("Account created");
+			}
+			
+			
+			@PostMapping("/account/responseentity1/data")
+			public ResponseEntity<String> accountRequest2(@RequestBody AccountRequest accReq) {
+				
+					
+			    
+			    if(accService.saveData(accReq)==false) {
+			    	System.out.println("failed");
+			    	return ResponseEntity.badRequest().body("balance cant be zero or negative");
+			    }
+					System.out.println("Sucess");
+				return ResponseEntity.status(HttpStatus.CREATED).body("Account created");
+			}
+}
