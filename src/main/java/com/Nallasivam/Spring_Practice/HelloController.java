@@ -3,6 +3,7 @@ package com.Nallasivam.Spring_Practice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,7 +75,7 @@ public class HelloController {
 				return "it is "+variable;
 			}
 			
-			@PostMapping("/account/data")
+	/*		@PostMapping("/account/data")
 			public String accountRequest(@RequestBody AccountRequest accReq) {
 				
 				System.out.println(accReq.getAccountNumber());
@@ -97,7 +98,7 @@ public class HelloController {
 			    }
 					
 				return ResponseEntity.status(HttpStatus.CREATED).body("Account created");
-			}
+			} 
 			
 			
 			@PostMapping("/account/responseentity1/data")
@@ -112,4 +113,17 @@ public class HelloController {
 					System.out.println("Sucess");
 				return ResponseEntity.status(HttpStatus.CREATED).body("Account created");
 			}
+			*/
+			
+			
+			@PostMapping("/account/datas")
+			public ResponseEntity<AccountResponse> accountRequestData(@RequestBody AccountRequest accReq) {
+				
+				 AccountResponse response =
+				            accService.createAccount(accReq);
+					return ResponseEntity.status(HttpStatus.CREATED).body(response);
+			}
+			
+		
+			
 }

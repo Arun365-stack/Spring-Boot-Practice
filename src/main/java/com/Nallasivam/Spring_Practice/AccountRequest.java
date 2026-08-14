@@ -5,7 +5,7 @@ public class AccountRequest {
 	
 	private String name;
 	private long accountNumber;
-	private double balance;
+// private double balance;
 	
 	public String getName() {
 			
@@ -27,12 +27,12 @@ public class AccountRequest {
 		this.accountNumber=accountNumber;
 	}
 	
-	public double getBalance() {
+/*	public double getBalance() {
 			
 		return balance;
 	}
 	
 	public void setBalance(double balance) {
 		this.balance=balance;
-	}
+	}  */
 }
