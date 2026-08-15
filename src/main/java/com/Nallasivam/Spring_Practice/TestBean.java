@@ -12,14 +12,14 @@ public class TestBean {
 
 	@PostConstruct
 	public void init() {
-			
+
 		System.out.println("Test bean created");
 	}
-	
+
 	@PreDestroy
-	public void destroy() {	
-		
-		
+	public void destroy() {
+
+
 		System.out.println("Test bean destroyed");
 	}
 }

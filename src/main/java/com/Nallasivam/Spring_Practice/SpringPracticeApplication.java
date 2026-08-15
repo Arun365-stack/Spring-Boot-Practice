@@ -10,26 +10,24 @@ public class SpringPracticeApplication {
 	public static void main(String[] args) {
 		  ApplicationContext context =
 				  SpringApplication.run(SpringPracticeApplication.class, args);
-		  
-		  
+
+
 		/*  		Payment payment=context.getBean(UpiPayment.class);
-		  		
+
 		  				payment.save(100); */
-		  
+
 		  			PaymentService ps=context.getBean(PaymentService.class);
-		  			
+
 		  							ps.makePayment(100);
-		  									
-		  			BankService bs=context.getBean(BankService.class);	
-		  			
-		  						bs.show();
-		  						
+
+		 
+
 		  			TestBean testbean=context.getBean(TestBean.class);
-		  			
+
 		  			TestBean testbean1=context.getBean(TestBean.class);
-		  			
+
 		  				System.out.println(testbean==testbean1);
-		  			
+
 	}
 
 }

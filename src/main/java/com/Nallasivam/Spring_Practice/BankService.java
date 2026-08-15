@@ -4,20 +4,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BankService {
-		
-		private BankAccount bankaccount;
-		
-		
-		public BankService(BankAccount bankaccount) {
-				
-			this.bankaccount=bankaccount;
-				
-		}
 
+	AccountRepository accountRepo;
+	
+	public BankService(AccountRepository accountRepo) {
 		
-			public void show() {
-					
-				System.out.println(bankaccount);
-					
+		this.accountRepo=accountRepo;
+	}
+			
+			public BankAccount getDData(int id) {
+				
+					return accountRepo.findById(id).orElseThrow(()->new AccountNotFoundException("This id's account is not found"));
 			}
 }

@@ -6,9 +6,9 @@ public class AccountResponse {
 		private String name;
 		private double balance;
 
-		
+
 		public AccountResponse(long accountNumber,String name,double balance) {
-				
+
 			this.accountNumber=accountNumber;
 			this.name=name;
 			this.balance=balance;
@@ -20,14 +20,14 @@ public class AccountResponse {
 		}
 
 
-	
+
 
 		public String getName() {
 			return name;
 		}
 
 
-		
+
 
 		public double getBalance() {
 			System.out.println("getBalance() called");
@@ -36,8 +36,8 @@ public class AccountResponse {
 
 
 	/* public String toString() {
-		
+
 			return "account number" +accountNumber+ "balance " + balance +"name"+ name;
 	}*/
-			
+
 }

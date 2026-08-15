@@ -1,15 +1,14 @@
 package com.Nallasivam.Spring_Practice;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentService {
-	
-		
+
+
 		private final Payment payment;
-		
+
 		   public PaymentService(@Qualifier ("upiPayment")Payment payment) {
 
 		        this.payment = payment;
@@ -20,7 +19,7 @@ public class PaymentService {
 		        payment.pay(amount);
 
 		    }
-		    
-		    
+
+
 
 }
