@@ -54,4 +54,17 @@ public class BankService {
 					return (List<BankAccount>) accountRepo.findRichAccounts(balance);
 			}
 			
+			public List<BankAccount> findBalnceWithSomeConditions(double minbalance,double maxbalance){
+				
+					return (List<BankAccount>) accountRepo.findByBalance(minbalance,maxbalance);
+			}
+			
+			
+			public List<BankAccount> findByBalanceNameDesc(String name,double minbalance,double maxbalance){
+				
+				System.out.println(name+ " " +minbalance+ " " +maxbalance);
+				
+				return (List<BankAccount>) accountRepo.findByBalanceAndNameContaining(name,minbalance,maxbalance);
+		}
+
 }

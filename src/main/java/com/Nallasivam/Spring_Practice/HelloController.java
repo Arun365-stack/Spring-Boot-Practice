@@ -190,5 +190,20 @@ public class HelloController {
 				
 				return ResponseEntity.ok(bankservice.findManyRichAccounts(balance));
 			}
+			
+			@GetMapping("/accounts/betwweenminandmax/{min}/{max}")
+			public ResponseEntity<List<BankAccount>> controllerFindAccountsByMinMax(@PathVariable double min,@PathVariable double max){
+				
+					return ResponseEntity.ok(bankservice.findBalnceWithSomeConditions(min,max));
+			}
 
+			
+			
+			@GetMapping("/accounts/namebalancedesc/{name}/{min}/{max}")
+			public ResponseEntity<List<BankAccount>> controllerFindByBalanceNameDDesc(@PathVariable String name ,@PathVariable double min,@PathVariable double max){
+				
+							System.out.println(name+ " " +min+ " " +max);
+					return ResponseEntity.ok(bankservice.findByBalanceNameDesc(name,min,max));
+			}
+			
 }

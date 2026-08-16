@@ -28,4 +28,18 @@ public interface AccountRepository extends JpaRepository<BankAccount,Integer >{
 				""")
 			List<BankAccount> findRichAccounts(@Param("balance")double balance);
 			
+			@Query("""
+					SELECT a 
+					FROM BankAccount a 
+					WHERE a.balance BETWEEN :min AND :max
+				""")
+			List<BankAccount> findByBalance(@Param("min") double min,@Param("max") double max);
+			
+			@Query("""
+					SELECT a 
+					FROM BankAccount a 
+					WHERE a.name LIKE CONCAT('%', :name, '%') AND a.balance BETWEEN :min AND :max ORDER BY a.balance DESC
+				""")
+			List<BankAccount> findByBalanceAndNameContaining(@Param("name") String name,@Param("min") double min,@Param("max") double max);
+			
 }
