@@ -1,5 +1,8 @@
 package com.Nallasivam.Spring_Practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -141,6 +144,51 @@ public class HelloController {
 						BankAccount bank=bankservice.getDData(id);
 						System.out.println(bank);
 				return ResponseEntity.ok(bank);
+			}
+			
+			
+			@GetMapping("/account/readall")
+			public ResponseEntity<ArrayList<BankAccount>>readall(){
+				
+						ArrayList<BankAccount> bankAccounts=bankservice.getAllData();
+						System.out.println(bankAccounts);
+				return ResponseEntity.ok(bankAccounts);
+			}
+			@DeleteMapping("/account/delete/{id}")
+			public ResponseEntity<String>deleteAccount(@PathVariable int id){
+				
+							bankservice.deleteDatas(id);
+					return ResponseEntity.ok("Deleted");
+			}
+			
+			@GetMapping("/account/text/{name}")
+			public ResponseEntity<BankAccount>getName(@PathVariable String name){
+				
+				return ResponseEntity.ok(bankservice.findNames(name));
+							
+			}
+			
+			@GetMapping("/account/texts/{name}")
+			public ResponseEntity<List<BankAccount>>getNames(@PathVariable String name){
+				
+				return ResponseEntity.ok(bankservice.findAllSameNames(name));
+							
+			}
+			
+			@GetMapping("/account/nameandbalance/{name}/{balance}")
+			public ResponseEntity<List<BankAccount>>getNamesAndBalance(@PathVariable String name,@PathVariable double balance){
+				
+				return ResponseEntity.ok(bankservice.findNameAndBalance(name,balance));
+							
+			}
+			
+			
+			@GetMapping("/account/getRichAccounts/{balance}")
+			public ResponseEntity<List<BankAccount>> controllerFindRichAccounts(@PathVariable double balance){
+				
+				
+				
+				return ResponseEntity.ok(bankservice.findManyRichAccounts(balance));
 			}
 
 }
