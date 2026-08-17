@@ -42,4 +42,13 @@ public interface AccountRepository extends JpaRepository<BankAccount,Integer >{
 				""")
 			List<BankAccount> findByBalanceAndNameContaining(@Param("name") String name,@Param("min") double min,@Param("max") double max);
 			
+			@Query(""" 
+					SELECT a FROM BankAccount a JOIN a.customer c WHERE c.name= :name
+					""")
+			List<BankAccount>findAccountsByCustomerName(@Param("name")String name);
+			
+			@Query("""
+					 SELECT a FROM BankAccount a JOIN a.customer c WHERE c.id=:id AND a.balance < :balance
+					""")
+			List<BankAccount> findParticularCustomerWhoisHavingBalanceLessThan(@Param ("id")int id,@Param("balance")double balance);
 }

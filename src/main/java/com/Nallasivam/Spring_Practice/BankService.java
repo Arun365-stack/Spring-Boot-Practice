@@ -66,5 +66,18 @@ public class BankService {
 				
 				return (List<BankAccount>) accountRepo.findByBalanceAndNameContaining(name,minbalance,maxbalance);
 		}
+			
+			public List<BankAccount> findCustomerAccounts(String name){
+				
+				return (List<BankAccount>) accountRepo.findAccountsByCustomerName(name);
+			}
+			
+			public List<BankAccount> findParticularCustomerBalanceLessThan(int id,double balance){
+				
+								System.out.println(id+ " " +balance);
+									
+				return (List<BankAccount>) accountRepo.findParticularCustomerWhoisHavingBalanceLessThan(id,balance);
+			}
+			
 
 }

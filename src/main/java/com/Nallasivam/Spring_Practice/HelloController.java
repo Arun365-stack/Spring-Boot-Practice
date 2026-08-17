@@ -206,4 +206,16 @@ public class HelloController {
 					return ResponseEntity.ok(bankservice.findByBalanceNameDesc(name,min,max));
 			}
 			
+			@GetMapping("/accounts/customer/name/{name}")
+			public ResponseEntity<List<BankAccount>> findSpecificCustomerAccounts(@PathVariable String name){
+				
+				
+						return ResponseEntity.ok(bankservice.findCustomerAccounts(name));
+			}
+			
+			@GetMapping("/accounts/get/customer/lessBalance/{id}/{balance}")
+			public ResponseEntity<List<BankAccount>> findAccountsAndLesserBalance(@PathVariable int id,@PathVariable double balance){
+				
+					return ResponseEntity.ok(bankservice.findParticularCustomerBalanceLessThan(id, balance));
+			}
 }
