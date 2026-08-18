@@ -41,4 +41,17 @@ public class CustomerController {
 					
 					return ResponseEntity.ok(customerservice.getAllCustomers());
 				}
+				// getAllCustomersWithoutLazy
+
+				@GetMapping("/customer/allaccountsWithoutsLazy")
+				public ResponseEntity<List<Customer>> getAllAccountsCustomerNoLazy(){
+					
+					return ResponseEntity.ok(customerservice.getAllCustomers());
+				}
+				
+				@GetMapping("/customer/all/specificName/{name}")
+				public ResponseEntity<List<Customer>> getAllCustomers(@PathVariable String name){
+					
+							return ResponseEntity.ok(customerservice.getAllCustomersWithName(name));
+				}
 }

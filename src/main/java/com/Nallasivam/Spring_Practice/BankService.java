@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BankService {
@@ -78,6 +79,15 @@ public class BankService {
 									
 				return (List<BankAccount>) accountRepo.findParticularCustomerWhoisHavingBalanceLessThan(id,balance);
 			}
-			
-
+			@Transactional
+			public String findBankAccountAndTransaction(int fromId,int toId,double amount) {
+				
+				BankAccount fromAccount=accountRepo.findById(fromId).orElseThrow();
+				BankAccount toAccount=accountRepo.findById(toId).orElseThrow();
+				
+					fromAccount.setBalance(fromAccount.getBalance()-amount);
+					toAccount.setBalance(toAccount.getBalance()+amount);
+				
+					return "Transaction done";
+			}
 }

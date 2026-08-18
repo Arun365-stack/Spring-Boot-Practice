@@ -35,4 +35,15 @@ public class CustomerService {
 				
 				return (List<Customer>)customerRepo.findAllCustomerIncludingNoAccounts();
 			}
+			
+			
+	        public List<Customer> getAllCustomersWithoutLazy(){
+				
+				return (List<Customer>)customerRepo.findAllCustomerIncludingNoAccountsWithoutLazy();
+			}
+	
+			public List<Customer> getAllCustomersWithName(String name){
+				
+					return customerRepo.findAllCustomersWithSpecificNames(name);
+			}
 }

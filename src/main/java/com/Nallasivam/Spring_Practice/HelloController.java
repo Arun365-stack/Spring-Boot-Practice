@@ -218,4 +218,10 @@ public class HelloController {
 				
 					return ResponseEntity.ok(bankservice.findParticularCustomerBalanceLessThan(id, balance));
 			}
+			
+			@PutMapping("/accounts/get/transactions/{from}/{to}/{amount}")
+			public ResponseEntity<String> findAccountsAndDoTransactions(@PathVariable int from,@PathVariable int to,@PathVariable double amount){
+				
+					return ResponseEntity.ok(bankservice.findBankAccountAndTransaction(from, to, amount));
+			}
 }
