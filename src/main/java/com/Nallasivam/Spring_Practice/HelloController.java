@@ -241,4 +241,16 @@ public class HelloController {
 				
 						return ResponseEntity.ok(bankservice.findAllCustomerAccountsDto());
 			}
+			
+			@GetMapping("/accounts/bankaccount/bankaccountdto/{id}")
+			public ResponseEntity<BankAccountDto> findAccounts(@PathVariable int id){
+				
+						return ResponseEntity.ok(bankservice.findAccountById(id));
+			}
+			
+			@PostMapping("/accounts/getMapper")
+			public ResponseEntity<AccountResponse>createByMapper(@RequestBody AccountRequest accountrequest){
+				
+					return ResponseEntity.status(HttpStatus.CREATED).body(bankservice.giveAccounts(accountrequest));
+			}
 }

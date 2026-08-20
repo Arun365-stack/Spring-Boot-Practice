@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BankService {
 
+	MapperCl mappercl;
 	AccountRepository accountRepo;
 	
-	public BankService(AccountRepository accountRepo) {
+	public BankService(AccountRepository accountRepo,MapperCl mappercl) {
 		
 		this.accountRepo=accountRepo;
+		this.mappercl=mappercl;
 	}
 			
 			public BankAccount getDData(int id) {
@@ -105,4 +107,23 @@ public class BankService {
 				
 				return accountRepo.findCustomerAccountsCountLeftJoinConstructorProjection();
 		}
+			public BankAccountDto findAccountById(int id) {
+				
+					BankAccount bankaccount=accountRepo.findById(id).orElseThrow();
+					
+					return new BankAccountDto(bankaccount.getName(),bankaccount.getBalance());
+			}
+			
+			
+			public AccountResponse giveAccounts(AccountRequest accReq) {
+				
+				BankAccount bankacc=mappercl.getandGive(accReq);
+				
+				BankAccount saved	=	accountRepo.save(bankacc);
+				
+				
+				
+				return mappercl.getandGivetoClient(saved);
+						
+			}
 }

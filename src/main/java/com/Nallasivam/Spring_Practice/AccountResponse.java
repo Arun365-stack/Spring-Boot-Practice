@@ -15,6 +15,11 @@ public class AccountResponse {
 		}
 
 
+		public AccountResponse() {
+			// TODO Auto-generated constructor stub
+		}
+
+
 		public long getAccountNumber() {
 			return accountNumber;
 		}
@@ -34,6 +39,22 @@ public class AccountResponse {
 			return balance;
 		}
 
+
+		public void setAccountNumber(long accountNumber) {
+			this.accountNumber = accountNumber;
+		}
+
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+
+		public void setBalance(double balance) {
+			this.balance = balance;
+		}
+
+		
 
 	/* public String toString() {
 

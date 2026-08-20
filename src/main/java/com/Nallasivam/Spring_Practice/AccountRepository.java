@@ -67,4 +67,7 @@ public interface AccountRepository extends JpaRepository<BankAccount,Integer >{
 					SELECT NEW com.Nallasivam.Spring_Practice.CustomerAccountCountDto(c.name, COUNT(a)) FROM  Customer c LEFT JOIN c.accounts a  GROUP BY  c.id,c.name
 					""")
 			List<CustomerAccountCountDto> findCustomerAccountsCountLeftJoinConstructorProjection();
+			
+			
+			
 }
