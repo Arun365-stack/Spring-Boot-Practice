@@ -51,4 +51,20 @@ public interface AccountRepository extends JpaRepository<BankAccount,Integer >{
 					 SELECT a FROM BankAccount a JOIN a.customer c WHERE c.id=:id AND a.balance < :balance
 					""")
 			List<BankAccount> findParticularCustomerWhoisHavingBalanceLessThan(@Param ("id")int id,@Param("balance")double balance);
+			
+			
+			@Query("""
+					SELECT a.customer.name, COUNT(a) FROM  BankAccount a  GROUP BY  a.customer.name
+					""")
+			List<Object[]> findCustomerAccountsCount();
+			
+			@Query("""
+					SELECT c.name, COUNT(a) FROM  Customer c LEFT JOIN c.accounts a  GROUP BY  c.id,c.name
+					""")
+			List<Object[]> findCustomerAccountsCountLeftJoin();
+			
+			@Query("""
+					SELECT NEW com.Nallasivam.Spring_Practice.CustomerAccountCountDto(c.name, COUNT(a)) FROM  Customer c LEFT JOIN c.accounts a  GROUP BY  c.id,c.name
+					""")
+			List<CustomerAccountCountDto> findCustomerAccountsCountLeftJoinConstructorProjection();
 }

@@ -46,4 +46,8 @@ public class CustomerService {
 				
 					return customerRepo.findAllCustomersWithSpecificNames(name);
 			}
+			public List<CustomerAccountCountDto>findAllCustomerAccountsDtoHaving(){
+				
+				return customerRepo.findCustomersWithMoreThanOneAccount();
+		}
 }

@@ -27,4 +27,16 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
 		    """, nativeQuery = true)
 	List<Customer>findAllCustomersWithSpecificNames(@Param("name") String name);
 	
+	@Query("""
+		    SELECT NEW com.Nallasivam.Spring_Practice.CustomerAccountCountDto(
+		        c.name,
+		        COUNT(a)
+		    )
+		    FROM Customer c
+		    LEFT JOIN c.accounts a
+		    GROUP BY c.id, c.name
+		    HAVING COUNT(a) > 1
+		""")
+		List<CustomerAccountCountDto> findCustomersWithMoreThanOneAccount();
+	
 }

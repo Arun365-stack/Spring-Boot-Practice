@@ -54,4 +54,10 @@ public class CustomerController {
 					
 							return ResponseEntity.ok(customerservice.getAllCustomersWithName(name));
 				}
+				
+				@GetMapping("/accounts/customer/allcountdtoHaving")
+				public ResponseEntity<List<CustomerAccountCountDto>> findCustomerAccountsWithCountAllDtoHaving(){
+					
+							return ResponseEntity.ok(customerservice.findAllCustomerAccountsDtoHaving());
+				}
 }

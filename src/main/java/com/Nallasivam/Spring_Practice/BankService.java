@@ -90,4 +90,19 @@ public class BankService {
 				
 					return "Transaction done";
 			}
+			
+			public List<Object[]>findCustomerAccounts(){
+				
+					return accountRepo.findCustomerAccountsCount();
+			}
+
+			public List<Object[]>findAllCustomerAccounts(){
+				
+					return accountRepo.findCustomerAccountsCountLeftJoin();
+			}
+			
+			public List<CustomerAccountCountDto>findAllCustomerAccountsDto(){
+				
+				return accountRepo.findCustomerAccountsCountLeftJoinConstructorProjection();
+		}
 }

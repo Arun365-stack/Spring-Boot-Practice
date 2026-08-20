@@ -224,4 +224,21 @@ public class HelloController {
 				
 					return ResponseEntity.ok(bankservice.findBankAccountAndTransaction(from, to, amount));
 			}
+			@GetMapping("/accounts/customer/count")
+			public ResponseEntity<List<Object[]>> findCustomerAccountsWithCount(){
+				
+						return ResponseEntity.ok(bankservice.findCustomerAccounts());
+			}
+			
+			@GetMapping("/accounts/customer/allcount")
+			public ResponseEntity<List<Object[]>> findCustomerAccountsWithCountAll(){
+				
+						return ResponseEntity.ok(bankservice.findAllCustomerAccounts());
+			}
+			
+			@GetMapping("/accounts/customer/allcountdto")
+			public ResponseEntity<List<CustomerAccountCountDto>> findCustomerAccountsWithCountAllDto(){
+				
+						return ResponseEntity.ok(bankservice.findAllCustomerAccountsDto());
+			}
 }
