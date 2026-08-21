@@ -1,9 +1,13 @@
 package com.Nallasivam.Spring_Practice;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+
 public class AccountRequest {
 
-
+	@NotBlank(message="name cannot be empty")
 	private String name;
+	
 	private long accountNumber;
 // private double balance;
 

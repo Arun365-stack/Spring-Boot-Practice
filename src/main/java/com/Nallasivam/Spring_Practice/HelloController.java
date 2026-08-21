@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class HelloController {
 
@@ -249,7 +251,7 @@ public class HelloController {
 			}
 			
 			@PostMapping("/accounts/getMapper")
-			public ResponseEntity<AccountResponse>createByMapper(@RequestBody AccountRequest accountrequest){
+			public ResponseEntity<AccountResponse>createByMapper(@RequestBody @Valid AccountRequest accountrequest){
 				
 					return ResponseEntity.status(HttpStatus.CREATED).body(bankservice.giveAccounts(accountrequest));
 			}

@@ -1,4 +1,7 @@
 package com.Nallasivam.Spring_Practice;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,5 +20,20 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> handleInvalidAccountnumberException(AccountNotFoundException ex){
 
 		return ResponseEntity.badRequest().body(ex.getMessage());
+	}
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<Map<String,String>> handleValidation(MethodArgumentNotValidException ex){
+		  Map<String, String> errors = new HashMap<>();
+
+		    ex.getBindingResult()
+		      .getFieldErrors()
+		      .forEach(error ->
+		          errors.put(
+		              error.getField(),
+		              error.getDefaultMessage()
+		          )
+		      );
+
+		    return ResponseEntity.badRequest().body(errors);
 	}
 }

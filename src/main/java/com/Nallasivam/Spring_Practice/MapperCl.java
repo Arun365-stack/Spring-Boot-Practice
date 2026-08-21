@@ -8,8 +8,11 @@ public class MapperCl {
 		public BankAccount getandGive(AccountRequest accReq) {
 			
 				BankAccount bankaccount=new BankAccount();
+				
 				bankaccount.setAccountNumber(accReq.getAccountNumber());
 				bankaccount.setName(accReq.getName());
+				
+			
 				
 				return bankaccount;
 		}
