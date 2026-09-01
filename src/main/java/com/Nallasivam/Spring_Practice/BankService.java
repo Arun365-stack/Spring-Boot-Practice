@@ -126,4 +126,11 @@ public class BankService {
 				return mappercl.getandGivetoClient(saved);
 						
 			}
+			
+			@Transactional
+			public void depositAmount(double amount,int id) {
+				BankAccount accB=accountRepo.findById(id).orElseThrow(()->new AccountNotFoundException("Account not found"));
+				
+				accB.setBalance(accB.getBalance()+amount);
+			}	
 }

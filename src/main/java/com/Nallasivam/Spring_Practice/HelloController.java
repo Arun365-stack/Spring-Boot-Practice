@@ -255,4 +255,13 @@ public class HelloController {
 				
 					return ResponseEntity.status(HttpStatus.CREATED).body(bankservice.giveAccounts(accountrequest));
 			}
+			
+				
+			@PostMapping("/account/deposit/balance/{id}")
+			public ResponseEntity<String>depositAmount(@RequestBody @Valid DepositRequestDto depositreq,@PathVariable int id){
+				
+					bankservice.depositAmount(depositreq.getAmount(), id);
+				
+					return ResponseEntity.status(HttpStatus.CREATED).body("Created successfully");
+			}
 }
